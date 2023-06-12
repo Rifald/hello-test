@@ -2,9 +2,16 @@ import os
 import tkinter as tk
 import requests
 import git
+import time
+import sys
 
-dir_path = os.path.dirname(os.path.realpath(__file__))
-print(dir_path)
+def myexcepthook(type, value, traceback, oldhook=sys.excepthook):
+    oldhook(type, value, traceback)
+    input("Press RETURN. ")    # use input() in Python 3.x
+
+sys.excepthook = myexcepthook
+
+dir_path = os.path.abspath(".")
 with open(dir_path+'\\version.txt') as f:
     currentVersion = f.read()
 import requests
@@ -30,6 +37,7 @@ if (data == currentVersion):
 else:
     os.rename(dir_path+"\\hello_test.exe",dir_path+"\\hello_test.exe.tmp")
     # Instantiate repo object
+    time.sleep(10)
     r = requests.get('https://github.com/Rifald/hello-test/raw/main/hello_test.exe', allow_redirects=True).content
     open(dir_path+'\\hello_test.exe', 'wb').write(r)
 
