@@ -35,6 +35,10 @@ if (data == currentVersion):
 
     root.mainloop()
 else:
+    currentVersion = currentVersion.replace(currentVersion, data)
+    with open(dir_path+'\\version.txt', 'w') as file:
+        file.write(currentVersion)
+    
     os.rename(dir_path+"\\hello_test.exe",dir_path+"\\hello_test.exe.tmp")
     # Instantiate repo object
     time.sleep(10)
