@@ -30,6 +30,7 @@ if (data == currentVersion):
 else:
     os.rename(dir_path+"\\hello_test.exe",dir_path+"\\hello_test.exe.tmp")
     # Instantiate repo object
-    r = requests.get('https://github.com/Rifald/hello-test/raw/main/hello_test.exe')
+    r = requests.get('https://github.com/Rifald/hello-test/raw/main/hello_test.exe', allow_redirects=True).content
+    open(dir_path+'\\hello_test.exe', 'wb').write(r)
 
 
